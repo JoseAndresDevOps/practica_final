@@ -7,7 +7,7 @@ kind: Pod
 spec:
   containers:
   - name: shell
-    image: joseandresdevops/nuevojava:1.0
+    image: joseandresdevops/nuevojava:4.0
     volumeMounts:
     - mountPath: /var/run/docker.sock
       name: docker-socket-volume
@@ -31,13 +31,20 @@ spec:
     registryCredential='docker-hub-credentials'
     registryBackend = 'joseandresdevops/spring-boot-app'
   }
-  
+
     stages {
         stage('build') {
             steps {
                 sh 'mvn --version'
             }
         }
-    }
 
+        stage("build"){
+            steps{
+                sh "mvn clean package -DskipTest"
+            }
+        }
+
+        
+    }
 }
