@@ -46,10 +46,31 @@ spec:
             steps {
                 sh 'mvn --version'
                 sh "mvn clean package -DskipTest"
-                archiveArtifcats artifacts: '**/target/*.jar', fingerprint: true
+                //archiveArtifcats artifacts: '**/target/*.jar', fingerprint: true
             }
         }
+        
+    stage('Push Image to Docker Hub') {
+      steps {
+        script {
+          dockerImage = docker.build registryBackend + ":$BUILD_NUMBER"
+          docker.withRegistry( '', registryCredential) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
 
+    stage('Push Image latest to Docker Hub') {
+      steps {
+        script {
+          dockerImage = docker.build registryBackend + ":latest"
+          docker.withRegistry( '', registryCredential) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
 
 
 
