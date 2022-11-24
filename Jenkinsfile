@@ -48,6 +48,16 @@ spec:
                 sh "mvn clean package -DskipTest"
             }
         }
+
+        stage('NPM build') {
+            steps {
+                script {
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
+            }
+        }
+
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv(credentialsId: "sonarqube-server", installationName: "sonarqube-server"){
