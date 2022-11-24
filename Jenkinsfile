@@ -41,12 +41,20 @@ spec:
                 junit "target/surefire-reports/*.xml"
             }
         }
-        
+
         stage('build') {
             steps {
                 sh 'mvn --version'
                 sh "mvn clean package -DskipTest"
             }
         }
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv(credentialsId: "sonarqube-server", installationName: "sonarqube-server"){
+                sh 'npm run sonar'
+                }
+            }
+        }
+
     }
 }
