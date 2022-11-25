@@ -38,16 +38,16 @@ spec:
             steps {
                 sh 'mvn --version'
                 sh "mvn clean package -DskipTest"
-                //sh "mvn package"
-                //archiveArtifcats artifacts: '**/target/*.jar', fingerprint: true
+                sh "mvn package"
+                archiveArtifcats artifacts: '**/target/*.jar', fingerprint: true
             }
         }
         
         stage("test"){
             steps{
                 sh "mvn test"
-                jacoco()
                 junit "target/surefire-reports/*.xml"
+                jacoco()
             }
         }
 
