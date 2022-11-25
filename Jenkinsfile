@@ -136,9 +136,10 @@ stage ("Run Jmeter Performance Test") {
                if(fileExists("apache-jmeter-5.5.tgz")){
                    sh 'rm -r apache-jmeter-5.5.tgz'
                }
-               sh './run.sh -n -t test/perform_test.jmx -l test/perform_test.jtl'
-               sh 'docker cp jmeter:/home/jmeter/apache-jmeter-5.5/test/perform_test.jtl /home/jenkins/workspace/_app_perform-test-implementation/jmeter-docker/test'
-               perfReport '/home/jenkins/workspace/_app_perform-test-implementation/jmeter-docker/test/perform_test.jtl'
+                    sh './run.sh -n -t test/perform_test.jmx -l test/perform_test.jtl'
+                    sh 'pwd'
+                    sh 'docker cp jmeter:/home/jmeter/apache-jmeter-5.5/test/perform_test.jtl $(pwd)/test'
+                    perfReport 'test/perform_test.jtl'
             }
 
        }
