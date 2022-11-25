@@ -132,7 +132,7 @@ stage ("Generate Taurus Report") {
                sh 'export PATH=$PATH:/home/jenkins/.local/bin'
 
                BlazeMeterTest: {
-                   sh '/home/jenkins/.local/bin/bzt test/perform_test.jtl -report'
+                   sh '/home/jenkins/.local/bin/bzt $(pwd)/test -report'
                }
             }
        }
