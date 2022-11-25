@@ -36,9 +36,9 @@ spec:
 
         stage('build') {
             steps {
-                sh 'mvn --version'
+                //*sh 'mvn --version'
                 sh "mvn clean package -DskipTest"
-                sh "mvn package"
+                //*sh "mvn package"
                 //archiveArtifcats artifacts: '**/target/*.jar', fingerprint: true
             }
         }
@@ -46,30 +46,10 @@ spec:
         stage("test"){
             steps{
                 sh "mvn test"
-                junit "target/surefire-reports/*.xml"
-                jacoco()
+                //*junit "target/surefire-reports/*.xml"
+                //*jacoco()
             }
         }
-
-        //stage('NPM build') {
-        //    steps {
-        //        script {
-                    //sh 'npm install'
-                    //sh 'npm run build'
-        //        }
-        //    }
-        //}
-        
-        stage('SonarQube analysis') {
-            steps {
-                withSonarQubeEnv(credentialsId: "sonarqube-server", installationName: "sonarqube-server"){
-                sh 'npm run sonar'
-                }
-            }
-        }
-
-
-
 
         stage('Push Image to Docker Hub') {
             steps {
@@ -93,6 +73,59 @@ spec:
             }
         }
 
+stage ("Setup Jmeter") {
+   steps{
+       script {
+
+           if(fileExists("jmeter-docker")){
+              sh 'rm -r jmeter-docker'
+           }
+
+           sh 'git clone https://github.com/FranAznarTeralco/jmeter-docker.git'
+
+            dir('jmeter-docker') {
+
+               if(fileExists("apache-jmeter-5.5.tgz")){
+                   sh 'rm -r apache-jmeter-5.5.tgz'
+               }
+
+               sh 'wget https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.5.tgz'
+               sh 'tar xvf apache-jmeter-5.5.tgz'
+               sh 'cp plugins/*.jar apache-jmeter-5.5/lib/ext'
+               sh 'mkdir test'
+               sh 'mkdir apache-jmeter-5.5/test'
+               sh 'cp ../src/main/resources/*.jmx apache-jmeter-5.5/test/'
+               sh 'chmod +775 ./build.sh && chmod +775 ./run.sh && chmod +775 ./entrypoint.sh'
+               sh 'rm -r apache-jmeter-5.5.tgz'
+               sh 'tar -czvf apache-jmeter-5.5.tgz apache-jmeter-5.5'
+               sh './build.sh'
+               sh 'rm -r apache-jmeter-5.5 && rm -r apache-jmeter-5.5.tgz'
+               sh 'cp ../src/main/resources/perform_test.jmx test'
+            }
+
+       }
+   }
+}
+
+
+
+
+        //stage('NPM build') {
+        //    steps {
+        //        script {
+                    //sh 'npm install'
+                    //sh 'npm run build'
+        //        }
+        //    }
+        //}
+
+        //stage('SonarQube analysis') {
+        //    steps {
+        //        withSonarQubeEnv(credentialsId: "sonarqube-server", installationName: "sonarqube-server"){
+        //        sh 'npm run sonar'
+        //        }
+        //    }
+        //}
 
     }
 }
