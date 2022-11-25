@@ -47,26 +47,8 @@ spec:
         stage("test"){
             steps{
                 sh "mvn test"
+                jacoco()
                 junit "target/surefire-reports/*.xml"
-                //*jacoco()
-            }
-        }
-
-
-        stage('NPM build') {
-            steps {
-                script {
-                    sh 'mvn install'
-                    sh 'mvn run build'
-                }
-            }
-        }
-        
-        stage('SonarQube analysis') {
-            steps {
-                withSonarQubeEnv(credentialsId: "sonarqube-server", installationName: "sonarqube-server"){
-                sh 'mvn run sonar'
-                }
             }
         }
 
@@ -160,6 +142,24 @@ stage ("Generate Taurus Report") {
 }
 */
 
+/*                              SONARQUBE FALLA
+        stage('NPM build') {
+            steps {
+                script {
+                    sh 'mvn install'
+                    sh 'mvn run build'
+                }
+            }
+        }
+
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv(credentialsId: "sonarqube-server", installationName: "sonarqube-server"){
+                sh 'mvn run sonar'
+                }
+            }
+        }
+*/
 
 
         
