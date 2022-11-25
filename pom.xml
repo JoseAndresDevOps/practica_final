@@ -69,8 +69,7 @@
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.9.1.2184</version>
             </plugin>
-        </plugins>
-        			<plugin>
+            <plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.8</version>
@@ -89,6 +88,9 @@
 					</execution>
 				</executions>
 			</plugin>
+        </plugins>
+        
+
     </build>
 
 
