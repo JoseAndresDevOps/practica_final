@@ -47,8 +47,26 @@ spec:
         stage("test"){
             steps{
                 sh "mvn test"
-                //*junit "target/surefire-reports/*.xml"
+                junit "target/surefire-reports/*.xml"
                 //*jacoco()
+            }
+        }
+
+
+        stage('NPM build') {
+            steps {
+                script {
+                    sh 'mvn install'
+                    sh 'mvn run build'
+                }
+            }
+        }
+
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv(credentialsId: "sonarqube-server", installationName: "sonarqube-server"){
+                sh 'mvn run sonar'
+                }
             }
         }
 
@@ -124,7 +142,7 @@ spec:
             }
         }
 
-
+/*TAURUS/BLAZER NO VA POR LA PARTE FINAL, PROBLEMA CON LAS DIRECCIONES
 stage ("Generate Taurus Report") {
    steps{
        script {
@@ -133,36 +151,15 @@ stage ("Generate Taurus Report") {
                sh 'export PATH=$PATH:/home/jenkins/.local/bin'
 
                BlazeMeterTest: {
-                   sh 'test/perform_test.jtl -report'
+                   sh '/home/jenkins/.local/bin/bzt test/perform_test.jtl -report'  //si le cambio la ruta de prncipio me dice permiso denegado
                }
             }
        }
    }
 }
+*/
 
 
-
-
-
-
-
-
-        //stage('NPM build') {
-        //    steps {
-        //        script {
-                    //sh 'mvn install'
-                    //sh 'mvn run build'
-        //        }
-        //    }
-        //}
-
-        //stage('SonarQube analysis') {
-        //    steps {
-        //        withSonarQubeEnv(credentialsId: "sonarqube-server", installationName: "sonarqube-server"){
-        //        sh 'mvn run sonar'
-        //        }
-        //    }
-        //}
 
         
     }
