@@ -34,6 +34,15 @@ spec:
 
     stages {
 
+        stage('build') {
+            steps {
+                sh 'mvn --version'
+                sh "mvn clean package -DskipTest"
+                //sh "mvn package"
+                //archiveArtifcats artifacts: '**/target/*.jar', fingerprint: true
+            }
+        }
+        
         stage("test"){
             steps{
                 sh "mvn test"
@@ -42,14 +51,6 @@ spec:
             }
         }
 
-        stage('build') {
-            steps {
-                sh 'mvn --version'
-                sh "mvn clean package -DskipTest"
-                //archiveArtifcats artifacts: '**/target/*.jar', fingerprint: true
-            }
-        }
-        
         stage('Push Image to Docker Hub') {
             steps {
                 script {
@@ -61,16 +62,16 @@ spec:
             }
         }
 
-        //stage('Push Image latest to Docker Hub') {
-        //    steps {
-        //        script {
-        //            dockerImage = docker.build registryBackend + ":latest"
-        //            docker.withRegistry( '', registryCredential) {
-        //            dockerImage.push()
-        //            }
-        //        }
-        //    }
-        //}
+        stage('Push Image latest to Docker Hub') {
+            steps {
+                script {
+                    dockerImage = docker.build registryBackend + ":latest"
+                    docker.withRegistry( '', registryCredential) {
+                    dockerImage.push()
+                    }
+                }
+            }
+        }
 
         //stage('NPM build') {
         //    steps {
