@@ -50,7 +50,7 @@ spec:
                 //*jacoco()
             }
         }
-
+/*
         stage('Push Image to Docker Hub') {
             steps {
                 script {
@@ -72,6 +72,8 @@ spec:
                 }
             }
         }
+*/
+
 
 stage ("Setup Jmeter") {
    steps{
@@ -127,5 +129,28 @@ stage ("Setup Jmeter") {
         //    }
         //}
 
+stage ("Run Jmeter Performance Test") {
+   steps{
+       script {
+            dir('jmeter-docker') {
+               if(fileExists("apache-jmeter-5.5.tgz")){
+                   sh 'rm -r apache-jmeter-5.5.tgz'
+               }
+               sh './run.sh -n -t test/perform_test.jmx -l test/perform_test.jtl'
+               sh 'docker cp jmeter:/home/jmeter/apache-jmeter-5.5/test/perform_test.jtl /home/jenkins/workspace/_app_perform-test-implementation/jmeter-docker/test'
+               perfReport '/home/jenkins/workspace/_app_perform-test-implementation/jmeter-docker/test/perform_test.jtl'
+            }
+
+       }
+   }
+}
+
+
+
+
+
+
+
+        
     }
 }
