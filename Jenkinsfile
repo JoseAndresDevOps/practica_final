@@ -61,7 +61,7 @@ spec:
                 }
             }
         }
-
+        
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv(credentialsId: "sonarqube-server", installationName: "sonarqube-server"){
@@ -93,7 +93,7 @@ spec:
             }
         }
 ********************************************/
-
+/* FUNCIONA ES EL JMETER
         stage ("Setup Jmeter") {
             steps{
                 script {
@@ -141,6 +141,7 @@ spec:
                 }
             }
         }
+*/
 
 /*TAURUS/BLAZER NO VA POR LA PARTE FINAL, PROBLEMA CON LAS DIRECCIONES
 stage ("Generate Taurus Report") {
