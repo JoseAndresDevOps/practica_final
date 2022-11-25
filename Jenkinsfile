@@ -124,6 +124,7 @@ spec:
             }
         }
 
+
 stage ("Generate Taurus Report") {
    steps{
        script {
@@ -132,7 +133,7 @@ stage ("Generate Taurus Report") {
                sh 'export PATH=$PATH:/home/jenkins/.local/bin'
 
                BlazeMeterTest: {
-                   sh '/home/jenkins/.local/bin test/perform_test.jtl -report'
+                   sh 'test/perform_test.jtl -report'
                }
             }
        }
