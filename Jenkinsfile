@@ -47,7 +47,7 @@ spec:
                 sh "mvn clean package -DskipTest"
                 sh "mvn compile"
                 sh "mvn package"
-                //archiveArtifcats artifacts: '**/target/*.jar', fingerprint: true
+                archiveArtifcats artifacts: '**/target/*.jar', fingerprint: true
             }
         }
         
