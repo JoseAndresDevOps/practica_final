@@ -39,7 +39,7 @@ spec:
                 //*sh 'mvn --version'
                 sh "mvn clean package -DskipTest"
                 //*sh "mvn compile"
-                //*sh "mvn package"
+                sh "mvn package"
                 //archiveArtifcats artifacts: '**/target/*.jar', fingerprint: true
             }
         }
@@ -161,7 +161,18 @@ stage ("Generate Taurus Report") {
         }
 */
 
+        stage('Deploy to K8s') {
 
+            steps{
+                script {
+                    if(fileExists("configuracion")){
+                        sh 'rm -r configuracion'
+                    }
+                }
+                    sh 'git clone https://github.com/JoseAndresDevOps/kubernetes-helm-docker-config.git configuracion --branch test-implementation'
+                    sh 'kubectl apply -f configuracion/kubernetes-deployment/spring-boot-app/manifest.yml -n default --kubeconfig=configuracion/kubernetes-config/config'
+            }
+        }
         
     }
 }
