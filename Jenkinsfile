@@ -142,7 +142,7 @@ stage ("Generate Taurus Report") {
 }
 */
 
-/*                              SONARQUBE FALLA
+
         stage('NPM build') {
             steps {
                 script {
@@ -159,8 +159,8 @@ stage ("Generate Taurus Report") {
                 }
             }
         }
-*/
 
+/*
         stage('Deploy to K8s') {
 
             steps{
@@ -173,6 +173,7 @@ stage ("Generate Taurus Report") {
                     sh 'kubectl apply -f configuracion/kubernetes-deployment/spring-boot-app/manifest.yml -n default --kubeconfig=configuracion/kubernetes-config/config'
             }
         }
+        */
         
     }
 }
