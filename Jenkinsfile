@@ -32,7 +32,7 @@ spec:
     registryBackend = 'joseandresdevops/spring-boot-app'
     NEXUS_VERSION = "nexus3"
     NEXUS_PROTOCOL = "http"
-    NEXUS_URL = "192.168.49.6:8081"//"localhost:8081/repository/bootcamp/"//
+    NEXUS_URL = "localhost:8081/repository/bootcamp/"//"192.168.49.6:8081"////
     NEXUS_REPOSITORY = "bootcamp"
     NEXUS_CREDENTIAL_ID = "nexus"
     DOCKER_IMAGE_NAME="joseandresdevops/spring-boot-app"
