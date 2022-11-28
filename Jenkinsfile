@@ -79,9 +79,9 @@ spec:
                         versionPom = "${pom.version}"
 
                         nexusArtifactUploader(
-                            nexusVersion: "nexus3",
-                            protocol: "http",
-                            nexusUrl: "localhost:8081",
+                            nexusVersion: NEXUS_VERSION,
+                            protocol: NEXUS_PROTOCOL,
+                            nexusUrl: NEXUS_URL,
                             groupId: pom.groupId,
                             version: pom.version,
                             repository: NEXUS_REPOSITORY,
