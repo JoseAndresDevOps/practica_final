@@ -36,7 +36,7 @@ spec:
     NEXUS_REPOSITORY = "bootcamp"
     NEXUS_CREDENTIAL_ID = "nexus"
     DOCKER_IMAGE_NAME="joseandresdevops/spring-boot-app"
-	DOCKERHUB_CREDENTIALS=credentials("docker-hub")
+	DOCKERHUB_CREDENTIALS=credentials("docker-hub-credentials")
   }
 
     stages {
