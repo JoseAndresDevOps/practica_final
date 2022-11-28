@@ -154,7 +154,7 @@ stage ("Generate Taurus Report") {
 
         stage('SonarQube analysis') {
             steps {
-                withSonarQubeEnv(credentialsId: "sonarqube-server", installationName: "sonarqube-server"){
+                withSonarQubeEnv(/*credentialsId: "sonarqube-server",*/installationName: "sonarqube-server"){
                 sh 'mvn run sonar'
                 }
             }
