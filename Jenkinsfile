@@ -30,6 +30,13 @@ spec:
   environment {
     registryCredential='docker-hub-credentials'
     registryBackend = 'joseandresdevops/spring-boot-app'
+    NEXUS_VERSION = "nexus3"
+    NEXUS_PROTOCOL = "http"
+    NEXUS_URL = "192.168.49.6:8081"
+    NEXUS_REPOSITORY = "bootcamp"
+    NEXUS_CREDENTIAL_ID = "nexus"
+    DOCKER_IMAGE_NAME="joseandresdevops/spring-boot-app"
+	DOCKERHUB_CREDENTIALS=credentials("docker-hub")
   }
 
     stages {
@@ -51,8 +58,6 @@ spec:
                 junit "target/surefire-reports/*.xml"
             }
         }
-
-
 
 
         stage("Publish to Nexus") {
