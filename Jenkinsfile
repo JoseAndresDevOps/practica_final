@@ -31,8 +31,8 @@ spec:
     registryCredential='docker-hub-credentials'
     registryBackend = 'joseandresdevops/spring-boot-app'
     NEXUS_VERSION = "nexus3"
-    NEXUS_PROTOCOL = "https"
-    NEXUS_URL = "https://curvy-heads-bet-213-0-57-163.loca.lt"//"localhost:8081/repository/bootcamp/"//
+    NEXUS_PROTOCOL = "http"
+    NEXUS_URL = "curvy-heads-bet-213-0-57-163.loca.lt"//"localhost:8081/repository/bootcamp/"//
     NEXUS_REPOSITORY = "bootcamp"
     NEXUS_CREDENTIAL_ID = "nexus"
     DOCKER_IMAGE_NAME="joseandresdevops/spring-boot-app"
