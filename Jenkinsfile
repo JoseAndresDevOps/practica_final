@@ -54,8 +54,8 @@ spec:
         stage("test"){
             steps{
                 sh "mvn test"
-                jacoco()
-                junit "target/surefire-reports/*.xml"
+                //jacoco()
+                //junit "target/surefire-reports/*.xml"
             }
         }
 
