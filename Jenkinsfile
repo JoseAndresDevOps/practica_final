@@ -32,7 +32,7 @@ spec:
     registryBackend = 'joseandresdevops/spring-boot-app'
     NEXUS_VERSION = "nexus3"
     NEXUS_PROTOCOL = "http"
-    NEXUS_URL = "modern-hats-design-213-0-57-163.loca.lt"//"localhost:8081/repository/bootcamp/"//
+    NEXUS_URL = "slick-poems-pump-213-0-57-163.loca.lt"//"localhost:8081/repository/bootcamp/"//
     NEXUS_REPOSITORY = "bootcamp"
     NEXUS_CREDENTIAL_ID = "nexus"
     DOCKER_IMAGE_NAME="joseandresdevops/spring-boot-app"
@@ -59,7 +59,6 @@ spec:
         }
 
         //FUNCIONA NEXUS - PUBLICAR PUERTO 8081
-        /*
         stage("Publish to Nexus") {
             steps {
                 script {
@@ -107,7 +106,7 @@ spec:
                 }
             }
         }
-*/
+
 
 
 
@@ -201,6 +200,7 @@ stage ("Generate Taurus Report") {
 }
 */
 
+/*
 //SONAR NO FUNCIONA PQ LAS CREDENCIALES NO PUEDEN VERSE
         stage('NPM build') {
             steps {
@@ -218,7 +218,7 @@ stage ("Generate Taurus Report") {
                 }
             }
         }
-
+*/
 /*
         stage('Deploy to K8s') {
 
