@@ -133,7 +133,7 @@ spec:
             }
         }
 ********************************************/
-/* FUNCIONA ES EL JMETER
+ //FUNCIONA ES EL JMETER
         stage ("Setup Jmeter") {
             steps{
                 script {
@@ -181,9 +181,9 @@ spec:
                 }
             }
         }
-*/
 
-/*TAURUS/BLAZER NO VA POR LA PARTE FINAL, PROBLEMA CON LAS DIRECCIONES
+
+//TAURUS/BLAZER NO VA POR LA PARTE FINAL, PROBLEMA CON LAS DIRECCIONES
 stage ("Generate Taurus Report") {
    steps{
        script {
@@ -198,7 +198,7 @@ stage ("Generate Taurus Report") {
        }
    }
 }
-*/
+
 
 /*
 //SONAR NO FUNCIONA PQ LAS CREDENCIALES NO PUEDEN VERSE
