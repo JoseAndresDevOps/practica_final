@@ -47,7 +47,6 @@ spec:
                 sh "mvn clean package -DskipTest"
                 sh "mvn compile"
                 sh "mvn package"
-                //archiveArtifcats artifacts: '**/target/*.jar', fingerprint: true
             }
         }
         
@@ -59,7 +58,8 @@ spec:
             }
         }
 
-
+        //FUNCIONA NEXUS - PUBLICAR PUERTO 8081
+        /*
         stage("Publish to Nexus") {
             steps {
                 script {
@@ -107,7 +107,7 @@ spec:
                 }
             }
         }
-
+*/
 
 
 
@@ -201,7 +201,7 @@ stage ("Generate Taurus Report") {
 }
 */
 
-/*      SONAR NO FUNCIONA PQ LAS CREDENCIALES NO PUEDEN VERSE
+//SONAR NO FUNCIONA PQ LAS CREDENCIALES NO PUEDEN VERSE
         stage('NPM build') {
             steps {
                 script {
@@ -213,13 +213,13 @@ stage ("Generate Taurus Report") {
 
         stage('SonarQube analysis') {
             steps {
-                withSonarQubeEnv(credentialsId: "sonarqube-server",installationName: "sonarqube-server"){
+                withSonarQubeEnv(credentialsId: "sonarqube-server3",installationName: "sonarqube-server"){
                 sh 'mvn run sonar'
                 }
             }
         }
-*/
 
+/*
         stage('Deploy to K8s') {
 
             steps{
@@ -232,7 +232,7 @@ stage ("Generate Taurus Report") {
                     sh 'kubectl apply -f configuracion/kubernetes-deployment/spring-boot-app/manifest.yml -n default --kubeconfig=configuracion/kubernetes-config/config'
             }
         }
-        
+        */
         
     }
 }
