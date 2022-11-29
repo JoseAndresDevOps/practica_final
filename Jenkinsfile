@@ -59,6 +59,7 @@ spec:
         }
 
         //FUNCIONA NEXUS - PUBLICAR PUERTO 8081
+        /*
         stage("Publish to Nexus") {
             steps {
                 script {
@@ -106,7 +107,7 @@ spec:
                 }
             }
         }
-
+*/
 
 
 
