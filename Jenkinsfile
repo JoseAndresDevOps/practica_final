@@ -32,7 +32,7 @@ spec:
     registryBackend = 'joseandresdevops/spring-boot-app'
     NEXUS_VERSION = "nexus3"
     NEXUS_PROTOCOL = "http"
-    NEXUS_URL = "early-worms-fail-213-0-57-163.loca.lt"//"localhost:8081/repository/bootcamp/"//
+    NEXUS_URL = "hot-teams-go-213-0-57-163.loca.lt"//"localhost:8081/repository/bootcamp/"//
     NEXUS_REPOSITORY = "bootcamp"
     NEXUS_CREDENTIAL_ID = "nexus"
     DOCKER_IMAGE_NAME="joseandresdevops/spring-boot-app"
@@ -192,7 +192,7 @@ stage ("Generate Taurus Report") {
                sh 'export PATH=$PATH:/home/jenkins/.local/bin'
 
                BlazeMeterTest: {
-                   sh '/home/jenkins/.local/bin/bzt test/perform_test.jtl -report'  //si le cambio la ruta de prncipio me dice permiso denegado
+                   sh 'bzt test/perform_test.jtl -report'  //si le cambio la ruta de prncipio me dice permiso denegado
                }
             }
        }
