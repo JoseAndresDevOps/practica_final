@@ -170,7 +170,7 @@ stage ("Generate Taurus Report") {
         }
 */
 
-
+/*
         //FUNCIONA NEXUS - PUBLICAR PUERTO 8081
         
         stage("Publish to Nexus") {
@@ -220,7 +220,7 @@ stage ("Generate Taurus Report") {
                 }
             }
         }
-
+*/
 
 
         stage('Deploy to K8s') {
